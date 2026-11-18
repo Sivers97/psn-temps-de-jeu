@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: psn-temps-de-jeu
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120
+    envVars:
+      - key: APP_PASSWORD
+        sync: false
+      - key: PSN_NPSSO
+        sync: false
